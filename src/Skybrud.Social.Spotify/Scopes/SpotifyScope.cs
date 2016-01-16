@@ -20,16 +20,31 @@ namespace Skybrud.Social.Spotify.Scopes {
         /// </summary>
         public string Name { get; private set; }
 
+        /// <summary>
+        /// Gets the description of the scope.
+        /// </summary>
+        public string Description { get; private set; }
+
         #endregion
 
         #region Constructors
 
         /// <summary>
-        /// Initializes a new scope based on the specified <code>name</code> a.
+        /// Initializes a new scope based on the specified <code>name</code>.
         /// </summary>
         /// <param name="name">The name of the scope.</param>
         public SpotifyScope(string name) {
             Name = name;
+        }
+
+        /// <summary>
+        /// Initializes a new scope based on the specified <code>name</code> and <code>description</code>.
+        /// </summary>
+        /// <param name="name">The name of the scope.</param>
+        /// <param name="description">The description of the scope.</param>
+        public SpotifyScope(string name, string description) {
+            Name = name;
+            Description = description;
         }
 
         #endregion

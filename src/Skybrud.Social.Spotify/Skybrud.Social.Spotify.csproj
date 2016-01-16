@@ -55,6 +55,7 @@
     <Compile Include="Responses\SpotifyResponse.cs" />
     <Compile Include="Scopes\SpotifyScope.cs" />
     <Compile Include="Scopes\SpotifyScopeCollection.cs" />
+    <Compile Include="Scopes\SpotifyScopes.cs" />
     <Compile Include="SpotifyUtils.cs" />
   </ItemGroup>
   <ItemGroup>
