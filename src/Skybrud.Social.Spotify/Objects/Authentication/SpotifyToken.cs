@@ -23,7 +23,12 @@ namespace Skybrud.Social.Spotify.Objects.Authentication {
 
         #region Constructors
 
-        private SpotifyToken(JObject obj) : base(obj) {}
+        private SpotifyToken(JObject obj) : base(obj) {
+            AccessToken = obj.GetString("access_token");
+            TokenType = obj.GetString("token_type");
+            ExpiresIn = obj.GetDouble("expires_in", TimeSpan.FromSeconds);
+            RefreshToken = obj.GetString("refresh_token");
+        }
 
         #endregion
 
@@ -34,17 +39,7 @@ namespace Skybrud.Social.Spotify.Objects.Authentication {
         /// </summary>
         /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
         public static SpotifyToken Parse(JObject obj) {
-            
-            if (obj == null) return null;
-
-            // Parse the rest of the response
-            return new SpotifyToken(obj) {
-                AccessToken = obj.GetString("access_token"),
-                TokenType = obj.GetString("token_type"),
-                ExpiresIn = obj.GetDouble("expires_in", TimeSpan.FromSeconds),
-                RefreshToken = obj.GetString("refresh_token")
-            };
-        
+            return obj == null ? null : new SpotifyToken(obj);
         }
 
         #endregion
