@@ -1,43 +1,17 @@
 ﻿using System;
 using System.Collections.Specialized;
-using System.Net;
 using Skybrud.Social.Http;
+using Skybrud.Social.OAuth2;
 using Skybrud.Social.Spotify.Responses.Authentication;
 using Skybrud.Social.Spotify.Scopes;
 
 namespace Skybrud.Social.Spotify.OAuth {
 
-    public class SpotifyOAuthClient {
+    public class SpotifyOAuthClient : OAuth2Client {
 
         #region Properties
 
-        #region OAuth
-
-        /// <summary>
-        /// Gets or sets the client ID.
-        /// </summary>
-        public string ClientId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the client secret.
-        /// </summary>
-        public string ClientSecret { get; set; }
-
-        /// <summary>
-        /// Gets or sets the redirect URI.
-        /// </summary>
-        public string RedirectUri { get; set; }
-
-        /// <summary>
-        /// Gets or sets the access token.
-        /// </summary>
-        public string AccessToken { get; set; }
-
-        #endregion
-
-        #region Endpoints
-
-        #endregion
+        
 
         #endregion
         
@@ -83,6 +57,15 @@ namespace Skybrud.Social.Spotify.OAuth {
         #endregion
 
         #region Member methods
+        
+        /// <summary>
+        /// Generates the authorization URL using the specified <code>state</code>.
+        /// </summary>
+        /// <param name="state">The state to send to the Spotify OAuth login page.</param>
+        /// <returns>Returns an authorization URL based on <code>state</code>.</returns>
+        public override string GetAuthorizationUrl(string state) {
+            return GetAuthorizationUrl(state, default(string[]));
+        }
 
         /// <summary>
         /// Generates the authorization URL using the specified state and scope.
