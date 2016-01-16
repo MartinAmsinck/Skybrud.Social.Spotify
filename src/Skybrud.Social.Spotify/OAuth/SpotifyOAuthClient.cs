@@ -127,13 +127,10 @@ namespace Skybrud.Social.Spotify.OAuth {
             };
 
             // Make the call to the API
-            HttpWebResponse response = SocialUtils.DoHttpPostRequest("https://accounts.spotify.com/api/token", null, data);
-
-            // Wrap the native response class
-            SocialHttpResponse social = SocialHttpResponse.GetFromWebResponse(response);
+            SocialHttpResponse response = SocialUtils.DoHttpPostRequest("https://accounts.spotify.com/api/token", null, data);
 
             // Parse the response
-            return SpotifyTokenResponse.ParseResponse(social);
+            return SpotifyTokenResponse.ParseResponse(response);
 
         }
 
