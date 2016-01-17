@@ -1,7 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json.Linq;
 using Skybrud.Social.Http;
-using Skybrud.Social.Spotify.Objects;
 using Skybrud.Social.Spotify.Objects.Authentication;
 
 namespace Skybrud.Social.Spotify.Responses.Authentication {

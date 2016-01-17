@@ -48,18 +48,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Endpoints\Raw\SpotifyArtistsRawEndpoint.cs" />
+    <Compile Include="Endpoints\SpotifyArtistsEndpoint.cs" />
     <Compile Include="Enums\SpotifyAlbumType.cs" />
     <Compile Include="OAuth\SpotifyOAuthClient.cs" />
     <Compile Include="Objects\Albums\SpotifyAlbumTypesCollection.cs" />
+    <Compile Include="Objects\Artists\SpotifyArtistCollection.cs" />
+    <Compile Include="Objects\Artists\SpotifyArtist.cs" />
+    <Compile Include="Objects\Artists\SpotifyArtistUrlCollection.cs" />
+    <Compile Include="Objects\Common\SpotifyImage.cs" />
     <Compile Include="Objects\Authentication\SpotifyToken.cs" />
+    <Compile Include="Objects\Common\SpotifyFollowers.cs" />
     <Compile Include="Objects\SpotifyObject.cs" />
     <Compile Include="Options\Artists\SpotifyGetAlbumsOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Responses\Artists\SpotifyGetArtistsResponse.cs" />
+    <Compile Include="Responses\Artists\SpotifyGetArtistResponse.cs" />
     <Compile Include="Responses\Authentication\SpotifyTokenResponse.cs" />
     <Compile Include="Responses\SpotifyResponse.cs" />
     <Compile Include="Scopes\SpotifyScope.cs" />
     <Compile Include="Scopes\SpotifyScopeCollection.cs" />
     <Compile Include="Scopes\SpotifyScopes.cs" />
+    <Compile Include="SpotifyService.cs" />
     <Compile Include="SpotifyUtils.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,7 @@
 using System.Collections.Specialized;
 using Skybrud.Social.Http;
 using Skybrud.Social.OAuth2;
+using Skybrud.Social.Spotify.Endpoints.Raw;
 using Skybrud.Social.Spotify.Responses.Authentication;
 using Skybrud.Social.Spotify.Scopes;
 
@@ -11,7 +12,10 @@ namespace Skybrud.Social.Spotify.OAuth {
 
         #region Properties
 
-        
+        /// <summary>
+        /// Gets a reference to the raw artists endpoint.
+        /// </summary>
+        public SpotifyArtistsRawEndpoint Artists { get; private set; }
 
         #endregion
         
@@ -21,7 +25,7 @@ namespace Skybrud.Social.Spotify.OAuth {
         /// Initializes an OAuth client with empty information.
         /// </summary>
         public SpotifyOAuthClient() {
-            
+            Artists = new SpotifyArtistsRawEndpoint(this);
         }
 
         /// <summary>
@@ -111,6 +115,30 @@ namespace Skybrud.Social.Spotify.OAuth {
 
             // Make the call to the API
             SocialHttpResponse response = SocialUtils.DoHttpPostRequest("https://accounts.spotify.com/api/token", null, data);
+
+            // Parse the response
+            return SpotifyTokenResponse.ParseResponse(response);
+
+        }
+
+        /// <summary>
+        /// Gets a new access token from the specified <code>refreshToken</code>.
+        /// </summary>
+        /// <param name="refreshToken">The refresh token of the user.</param>
+        /// <returns>Returns an access token based on the specified <code>refreshToken</code>.</returns>
+        public SpotifyTokenResponse GetAccessTokenFromRefreshToken(string refreshToken) {
+
+            // Initialize the POST data
+            NameValueCollection data = new NameValueCollection {
+                {"client_id", ClientId},
+                {"redirect_uri", RedirectUri},
+                {"client_secret", ClientSecret},
+                {"refresh_token", refreshToken },
+                {"grant_type", "refresh_token"}
+            };
+
+            // Make the call to the API
+            SocialHttpResponse response = SocialUtils.DoHttpPostRequest("https://login.live.com/oauth20_token.srf", null, data);
 
             // Parse the response
             return SpotifyTokenResponse.ParseResponse(response);
