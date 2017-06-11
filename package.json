@@ -1,9 +1,9 @@
 {
   "name": "Skybrud.Social.Facebook",
-  "url": "https://github.com/abjerner/Skybrud.Social.Facebook",
+  "url": "https://github.com/abjerner/Skybrud.Social.Spotify",
   "license": {
     "name": "MIT",
-    "url": "https://github.com/abjerner/Skybrud.Social.Facebook/blob/master/LICENSE.md"
+    "url": "https://github.com/abjerner/Skybrud.Social.Spotify/blob/master/LICENSE.md"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
