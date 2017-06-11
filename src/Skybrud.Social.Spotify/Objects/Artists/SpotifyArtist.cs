@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
-using Skybrud.Social.Json.Extensions.JObject;
+using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Spotify.Objects.Common;
 
 namespace Skybrud.Social.Spotify.Objects.Artists {

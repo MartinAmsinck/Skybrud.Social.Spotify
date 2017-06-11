@@ -1,16 +1,35 @@
 ﻿using System;
 using System.Collections.Specialized;
 using Skybrud.Social.Http;
-using Skybrud.Social.OAuth2;
 using Skybrud.Social.Spotify.Endpoints.Raw;
 using Skybrud.Social.Spotify.Responses.Authentication;
 using Skybrud.Social.Spotify.Scopes;
 
 namespace Skybrud.Social.Spotify.OAuth {
 
-    public class SpotifyOAuthClient : OAuth2Client {
+    public class SpotifyOAuthClient : SocialHttpClient {
 
         #region Properties
+
+        /// <summary>
+        /// Gets or sets the client ID of the app.
+        /// </summary>
+        public string ClientId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the client secret of the app.
+        /// </summary>
+        public string ClientSecret { get; set; }
+
+        /// <summary>
+        /// Gets or sets the redirect URI of your application.
+        /// </summary>
+        public string RedirectUri { get; set; }
+
+        /// <summary>
+        /// Gets or sets the access token.
+        /// </summary>
+        public string AccessToken { get; set; }
 
         /// <summary>
         /// Gets a reference to the raw artists endpoint.
@@ -67,7 +86,7 @@ namespace Skybrud.Social.Spotify.OAuth {
         /// </summary>
         /// <param name="state">The state to send to the Spotify OAuth login page.</param>
         /// <returns>Returns an authorization URL based on <code>state</code>.</returns>
-        public override string GetAuthorizationUrl(string state) {
+        public string GetAuthorizationUrl(string state) {
             return GetAuthorizationUrl(state, default(string[]));
         }
 
@@ -88,7 +107,7 @@ namespace Skybrud.Social.Spotify.OAuth {
         /// <param name="scope">The scope of the application.</param>
         /// <returns>Returns an authorization URL based on <code>state</code> and <code>scope</code>.</returns>
         public string GetAuthorizationUrl(string state, params string[] scope) {
-            return "https://accounts.spotify.com/authorize?" + SocialUtils.NameValueCollectionToQueryString(new NameValueCollection {
+            return "https://accounts.spotify.com/authorize?" + SocialUtils.Misc.NameValueCollectionToQueryString(new NameValueCollection {
                 {"client_id", ClientId},
                 {"response_type", "code"},
                 {"redirect_uri", RedirectUri},
@@ -114,7 +133,7 @@ namespace Skybrud.Social.Spotify.OAuth {
             };
 
             // Make the call to the API
-            SocialHttpResponse response = SocialUtils.DoHttpPostRequest("https://accounts.spotify.com/api/token", null, data);
+            SocialHttpResponse response = SocialUtils.Http.DoHttpPostRequest("https://accounts.spotify.com/api/token", null, data);
 
             // Parse the response
             return SpotifyTokenResponse.ParseResponse(response);
@@ -138,7 +157,7 @@ namespace Skybrud.Social.Spotify.OAuth {
             };
 
             // Make the call to the API
-            SocialHttpResponse response = SocialUtils.DoHttpPostRequest("https://login.live.com/oauth20_token.srf", null, data);
+            SocialHttpResponse response = SocialUtils.Http.DoHttpPostRequest("https://login.live.com/oauth20_token.srf", null, data);
 
             // Parse the response
             return SpotifyTokenResponse.ParseResponse(response);
