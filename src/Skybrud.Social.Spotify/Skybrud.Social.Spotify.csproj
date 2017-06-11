@@ -74,7 +74,6 @@
     <Compile Include="Scopes\SpotifyScopeCollection.cs" />
     <Compile Include="Scopes\SpotifyScopes.cs" />
     <Compile Include="SpotifyService.cs" />
-    <Compile Include="SpotifyUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
