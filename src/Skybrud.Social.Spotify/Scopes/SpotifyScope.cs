@@ -30,7 +30,7 @@ namespace Skybrud.Social.Spotify.Scopes {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new scope based on the specified <code>name</code>.
+        /// Initializes a new scope based on the specified <paramref name="name"/>.
         /// </summary>
         /// <param name="name">The name of the scope.</param>
         public SpotifyScope(string name) {
@@ -38,7 +38,7 @@ namespace Skybrud.Social.Spotify.Scopes {
         }
 
         /// <summary>
-        /// Initializes a new scope based on the specified <code>name</code> and <code>description</code>.
+        /// Initializes a new scope based on the specified <paramref name="name"/> and <paramref name="description"/>.
         /// </summary>
         /// <param name="name">The name of the scope.</param>
         /// <param name="description">The description of the scope.</param>
@@ -70,10 +70,10 @@ namespace Skybrud.Social.Spotify.Scopes {
         }
 
         /// <summary>
-        /// Attempts to get a scope with the specified <code>name</code>.
+        /// Attempts to get a scope with the specified <paramref name="name"/>.
         /// </summary>
         /// <param name="name">The name of the scope.</param>
-        /// <returns>Gets a scope matching the specified <code>name</code>, or <code>null</code> if not found-</returns>
+        /// <returns>Gets a scope matching the specified <paramref name="name"/>, or <code>null</code> if not found.</returns>
         public static SpotifyScope GetScope(string name) {
             SpotifyScope scope;
             return Scopes.TryGetValue(name, out scope) ? scope : null;
@@ -83,8 +83,8 @@ namespace Skybrud.Social.Spotify.Scopes {
         /// Gets whether the scope is a known scope.
         /// </summary>
         /// <param name="name">The name of the scope.</param>
-        /// <returns>Returns <code>true</code> if the specified <code>name</code> matches a known
-        /// scope, otherwise <code>false</code>.</returns>
+        /// <returns><code>true</code> if the specified <paramref name="name"/> matches a known scope, otherwise
+        /// <code>false</code>.</returns>
         public static bool ScopeExists(string name) {
             return Scopes.ContainsKey(name);
         }
@@ -94,11 +94,11 @@ namespace Skybrud.Social.Spotify.Scopes {
         #region Operators
 
         /// <summary>
-        /// Adding two instances of <code>SpotifyScope</code> will result in a
-        /// <code>SpotifyScopeCollection</code> containing both scopes.
+        /// Adding two instances of <see cref="SpotifyScope"/> will result in a <see cref="SpotifyScopeCollection"/> containing both scopes.
         /// </summary>
         /// <param name="left">The left scope.</param>
         /// <param name="right">The right scope.</param>
+        /// <returns>An instance of <see cref="SpotifyScopeCollection"/>.</returns>
         public static SpotifyScopeCollection operator +(SpotifyScope left, SpotifyScope right) {
             return new SpotifyScopeCollection(left, right);
         }

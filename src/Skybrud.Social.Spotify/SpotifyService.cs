@@ -36,25 +36,28 @@ namespace Skybrud.Social.Spotify {
         /// Initialize a new service instance from the specified OAuth client.
         /// </summary>
         /// <param name="client">The OAuth client.</param>
+        /// <returns>The created instance of <see cref="Skybrud.Social.Spotify.SpotifyService" />.</returns>
         public static SpotifyService CreateFromOAuthClient(SpotifyOAuthClient client) {
             if (client == null) throw new ArgumentNullException("client");
             return new SpotifyService(client);
         }
 
         /// <summary>
-        /// Initializes a new service instance from the specifie OAuth 2 access token.
+        /// Initializes a new service instance from the specifie OAuth 2 <paramref name="accessToken"/>.
         /// </summary>
         /// <param name="accessToken">The access token.</param>
+        /// <returns>The created instance of <see cref="Skybrud.Social.Spotify.SpotifyService" />.</returns>
         public static SpotifyService GreateFromAccessToken(string accessToken) {
             return new SpotifyService(new SpotifyOAuthClient(accessToken));
         }
 
         /// <summary>
-        /// Initializes a new instance based on the specified <code>refreshToken</code>.
+        /// Initializes a new instance based on the specified <paramref name="refreshToken"/>.
         /// </summary>
         /// <param name="clientId">The client ID.</param>
         /// <param name="clientSecret">The client secret.</param>
         /// <param name="refreshToken">The refresh token of the user.</param>
+        /// <returns>The created instance of <see cref="Skybrud.Social.Spotify.SpotifyService" />.</returns>
         public static SpotifyService CreateFromRefreshToken(string clientId, string clientSecret, string refreshToken) {
 
             // Initialize a new OAuth client
