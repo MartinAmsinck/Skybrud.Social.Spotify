@@ -1,7 +1,6 @@
 ﻿using System;
 using Skybrud.Social.Http;
 using Skybrud.Social.Spotify.Endpoints.Raw;
-using Skybrud.Social.Spotify.Objects.Artists;
 using Skybrud.Social.Spotify.Options.Artists;
 using Skybrud.Social.Spotify.Responses.Artists;
 

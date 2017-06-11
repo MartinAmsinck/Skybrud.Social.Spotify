@@ -2,7 +2,7 @@
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Skybrud.Social.Spotify.Objects.Authentication {
+namespace Skybrud.Social.Spotify.Models.Authentication {
     
     /// <summary>
     /// Class representing the response body of a call to get a refresh token or an access token.

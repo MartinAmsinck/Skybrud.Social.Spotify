@@ -1,4 +1,4 @@
-﻿namespace Skybrud.Social.Spotify.Enums {
+﻿namespace Skybrud.Social.Spotify.Models.Albums {
 
     /// <summary>
     /// Enum class representing the type of a Spotify album.

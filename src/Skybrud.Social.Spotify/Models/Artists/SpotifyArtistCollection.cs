@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Skybrud.Social.Spotify.Objects.Artists {
+namespace Skybrud.Social.Spotify.Models.Artists {
 
     public class SpotifyArtistCollection : SpotifyObject {
 

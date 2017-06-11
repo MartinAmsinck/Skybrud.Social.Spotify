@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Skybrud.Essentials.Strings;
-using Skybrud.Social.Spotify.Enums;
 
-namespace Skybrud.Social.Spotify.Objects.Albums {
+namespace Skybrud.Social.Spotify.Models.Albums {
 
     public class SpotifyAlbumTypesCollection {
 

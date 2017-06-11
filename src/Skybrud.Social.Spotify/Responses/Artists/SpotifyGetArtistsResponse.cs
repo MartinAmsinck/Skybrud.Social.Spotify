@@ -1,5 +1,5 @@
 ﻿using Skybrud.Social.Http;
-using Skybrud.Social.Spotify.Objects.Artists;
+using Skybrud.Social.Spotify.Models.Artists;
 
 namespace Skybrud.Social.Spotify.Responses.Artists {
 

@@ -1,4 +1,4 @@
-﻿using Skybrud.Social.Spotify.Objects.Albums;
+﻿using Skybrud.Social.Spotify.Models.Albums;
 
 namespace Skybrud.Social.Spotify.Options.Artists {
 

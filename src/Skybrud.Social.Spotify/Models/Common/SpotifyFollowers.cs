@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Skybrud.Social.Spotify.Objects.Common {
+namespace Skybrud.Social.Spotify.Models.Common {
     
     /// <summary>
     /// Class representing follower information a Spotify artist. 
