@@ -65,6 +65,7 @@
     <Compile Include="Objects\SpotifyObject.cs" />
     <Compile Include="Options\Artists\SpotifyGetAlbumsOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfoGenerated.cs" />
     <Compile Include="Responses\Artists\SpotifyGetArtistsResponse.cs" />
     <Compile Include="Responses\Artists\SpotifyGetArtistResponse.cs" />
     <Compile Include="Responses\Authentication\SpotifyTokenResponse.cs" />
@@ -77,8 +78,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\AssemblyInfo.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>"$(SolutionDir)build\Skybrud.Social.PreBuildTool.exe" 2015-10-29 "$(ProjectPath)"</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)build\UpdateAssemblyInfoJson.exe" "$(ProjectPath)" "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
