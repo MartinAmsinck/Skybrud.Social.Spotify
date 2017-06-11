@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Authentication and service implementation for the Spotify Web API.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Skybrud.dk")]
-[assembly: AssemblyProduct("Skybrud.Social.Spotify")]
+[assembly: AssemblyProduct("Skybrud.Social")]
 [assembly: AssemblyCopyright("Copyright © 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
