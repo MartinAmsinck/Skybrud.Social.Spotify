@@ -48,6 +48,7 @@ namespace Skybrud.Social.Spotify {
         /// <param name="accessToken">The access token.</param>
         /// <returns>The created instance of <see cref="Skybrud.Social.Spotify.SpotifyService" />.</returns>
         public static SpotifyService GreateFromAccessToken(string accessToken) {
+            if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException("accessToken");
             return new SpotifyService(new SpotifyOAuthClient(accessToken));
         }
 
@@ -59,6 +60,10 @@ namespace Skybrud.Social.Spotify {
         /// <param name="refreshToken">The refresh token of the user.</param>
         /// <returns>The created instance of <see cref="Skybrud.Social.Spotify.SpotifyService" />.</returns>
         public static SpotifyService CreateFromRefreshToken(string clientId, string clientSecret, string refreshToken) {
+
+            if (String.IsNullOrWhiteSpace(clientId)) throw new ArgumentNullException("clientId");
+            if (String.IsNullOrWhiteSpace(clientSecret)) throw new ArgumentNullException("clientSecret");
+            if (String.IsNullOrWhiteSpace(refreshToken)) throw new ArgumentNullException("refreshToken");
 
             // Initialize a new OAuth client
             SpotifyOAuthClient client = new SpotifyOAuthClient(clientId, clientSecret);
