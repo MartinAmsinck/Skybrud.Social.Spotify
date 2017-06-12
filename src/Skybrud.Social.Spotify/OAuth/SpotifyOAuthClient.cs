@@ -112,18 +112,25 @@ namespace Skybrud.Social.Spotify.OAuth {
         public string GetAuthorizationUrl(string state, params string[] scope) {
 
             // Input validation
-            if (String.IsNullOrWhiteSpace(state)) throw new ArgumentNullException("state");
             if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException("ClientId");
             if (String.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException("RedirectUri");
             
-            // Construct the authorization URL
-            return "https://accounts.spotify.com/authorize?" + SocialUtils.Misc.NameValueCollectionToQueryString(new NameValueCollection {
+            // Do we have a valid "state" ?
+            if (String.IsNullOrWhiteSpace(state)) {
+                throw new ArgumentNullException("state", "A valid state should be specified as it is part of the security of OAuth 2.0.");
+            }
+
+            // Construct the query string
+            NameValueCollection query = new NameValueCollection {
                 {"client_id", ClientId},
                 {"response_type", "code"},
                 {"redirect_uri", RedirectUri},
                 {"state", state},
                 {"scope", String.Join(" ", scope ?? new string[0])}
-            });
+            };
+
+            // Construct the authorization URL
+            return "https://accounts.spotify.com/authorize?" + SocialUtils.Misc.NameValueCollectionToQueryString(query);
         
         }
 
