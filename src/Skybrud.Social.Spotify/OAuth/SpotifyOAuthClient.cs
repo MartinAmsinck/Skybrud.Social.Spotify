@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
+using Skybrud.Essentials.Common;
 using Skybrud.Social.Http;
 using Skybrud.Social.Spotify.Endpoints.Raw;
 using Skybrud.Social.Spotify.Responses.Authentication;
