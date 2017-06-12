@@ -30,6 +30,11 @@ namespace Skybrud.Social.Spotify.Models.Artists {
 
         #region Constructors
 
+        /// <summary>
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="SpotifyArtistUrlCollection"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>An instance of <see cref="SpotifyArtistUrlCollection"/>.</returns>
         public static SpotifyArtistUrlCollection Parse(JObject obj) {
             return obj == null ? null : new SpotifyArtistUrlCollection(obj); 
         }

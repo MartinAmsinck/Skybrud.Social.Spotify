@@ -11,12 +11,25 @@ namespace Skybrud.Social.Spotify.Models.Authentication {
 
         #region Properties
 
+        /// <summary>
+        /// Gets the access token.
+        /// </summary>
         public string AccessToken { get; private set; }
 
+        /// <summary>
+        /// Gets the type of the access token. Given the authentication flows supported by Skybrud.Social, this will
+        /// always be <code>bearer</code>.
+        /// </summary>
         public string TokenType { get; private set; }
 
+        /// <summary>
+        /// Gets an instance of <see cref="TimeSpan"/> representing the time until the access token will expire.
+        /// </summary>
         public TimeSpan ExpiresIn { get; private set; }
 
+        /// <summary>
+        /// Gets a refresh token that can be used to obtain a new access tokens.
+        /// </summary>
         public string RefreshToken { get; private set; }
 
         #endregion
@@ -35,9 +48,10 @@ namespace Skybrud.Social.Spotify.Models.Authentication {
         #region Static methods
 
         /// <summary>
-        /// Gets an instance of <code>SpotifyToken</code> from the specified <code>JObject</code>.
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="SpotifyToken"/>.
         /// </summary>
-        /// <param name="obj">The instance of <code>JObject</code> to parse.</param>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>An instance of <see cref="SpotifyToken"/>.</returns>
         public static SpotifyToken Parse(JObject obj) {
             return obj == null ? null : new SpotifyToken(obj);
         }

@@ -76,7 +76,7 @@ namespace Skybrud.Social.Spotify.Models.Artists {
             Genres = obj.GetStringArray("genres");
             Href = obj.GetString("href");
             Id = obj.GetString("id");
-            Images = obj.GetArray("images", SpotifyImage.Parse);
+            Images = obj.GetArrayItems("images", SpotifyImage.Parse);
             Name = obj.GetString("name");
             Popularity = obj.GetInt32("popularity");
             Type = obj.GetString("type");
@@ -87,6 +87,11 @@ namespace Skybrud.Social.Spotify.Models.Artists {
 
         #region Static methods
 
+        /// <summary>
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="SpotifyArtist"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>An instance of <see cref="SpotifyArtist"/>.</returns>
         public static SpotifyArtist Parse(JObject obj) {
             return obj == null ? null : new SpotifyArtist(obj); 
         }

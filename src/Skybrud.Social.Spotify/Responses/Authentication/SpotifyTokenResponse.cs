@@ -1,6 +1,4 @@
-﻿using System;
-using Newtonsoft.Json.Linq;
-using Skybrud.Social.Http;
+﻿using Skybrud.Social.Http;
 using Skybrud.Social.Spotify.Models.Authentication;
 
 namespace Skybrud.Social.Spotify.Responses.Authentication {
@@ -9,30 +7,27 @@ namespace Skybrud.Social.Spotify.Responses.Authentication {
         
         #region Constructors
 
-        private SpotifyTokenResponse(SocialHttpResponse response) : base(response) { }
+        private SpotifyTokenResponse(SocialHttpResponse response) : base(response) {
+
+            // Validate the response
+            ValidateResponse(response);
+
+            // Parse the response body
+            Body = ParseJsonObject(response.Body, SpotifyToken.Parse);
+
+        }
 
         #endregion
 
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <code>SpotifyTokenResponse</code>.
+        /// Parses the specified <paramref name="response"/> into an instance of <see cref="SpotifyTokenResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <code>SpotifyTokenResponse</code>.</returns>
+        /// <returns>An instance of <see cref="SpotifyTokenResponse"/>.</returns>
         public static SpotifyTokenResponse ParseResponse(SocialHttpResponse response) {
-
-            // Some input validation
-            if (response == null) throw new ArgumentNullException("response");
-            
-            // Validate the response
-            ValidateResponse(response);
-
-            // Initialize the response object
-            return new SpotifyTokenResponse(response) {
-                Body =  SpotifyToken.Parse(JObject.Parse(response.Body))
-            };
-
+            return response == null ? null : new SpotifyTokenResponse(response);
         }
 
         #endregion

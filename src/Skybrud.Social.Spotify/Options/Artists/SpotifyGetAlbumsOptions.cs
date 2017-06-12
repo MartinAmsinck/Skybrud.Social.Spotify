@@ -1,8 +1,17 @@
-﻿using Skybrud.Social.Spotify.Models.Albums;
+﻿using System;
+using Skybrud.Social.Http;
+using Skybrud.Social.Interfaces.Http;
+using Skybrud.Social.Spotify.Models.Albums;
 
 namespace Skybrud.Social.Spotify.Options.Artists {
 
-    public class SpotifyGetAlbumsOptions {
+    /// <summary>
+    /// Class representing the options for a reqyest to get a list of albums of an artist.
+    /// </summary>
+    /// <see>
+    ///     <cref>https://developer.spotify.com/web-api/get-artists-albums/</cref>
+    /// </see>
+    public class SpotifyGetAlbumsOptions : IHttpGetOptions {
 
         #region Properties
 
@@ -36,6 +45,23 @@ namespace Skybrud.Social.Spotify.Options.Artists {
         /// Optional: Gets or sets the index of the first album to return.
         /// </summary>
         public int Offset { get; set; }
+
+        #endregion
+
+        #region Member methods
+
+        public IHttpQueryString GetQueryString() {
+            
+            SocialHttpQueryString query = new SocialHttpQueryString();
+
+            if (AlbumType != null && AlbumType.Count > 0) query.Add("album_type", AlbumType);
+            if (!String.IsNullOrWhiteSpace(Market)) query.Add("market", Market);
+            if (Limit > 0) query.Add("limit", Limit);
+            if (Offset > 0) query.Add("offset", Offset);
+
+            return query;
+
+        }
 
         #endregion
 

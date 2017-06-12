@@ -38,6 +38,11 @@ namespace Skybrud.Social.Spotify.Models.Common {
 
         #region Static methods
 
+        /// <summary>
+        /// Parses the specified <paramref name="obj"/> into an instance of <see cref="SpotifyFollowers"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        /// <returns>An instance of <see cref="SpotifyFollowers"/>.</returns>
         public static SpotifyFollowers Parse(JObject obj) {
             return obj == null ? null : new SpotifyFollowers(obj); 
         }

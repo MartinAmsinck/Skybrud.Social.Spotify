@@ -22,10 +22,10 @@ namespace Skybrud.Social.Spotify.Responses.Artists {
         #region Static methods
 
         /// <summary>
-        /// Parses the specified <code>response</code> into an instance of <code>SpotifyGetArtistResponse</code>.
+        /// Parses the specified <paramref name="response"/> into an instance of <see cref="SpotifyGetArtistResponse"/>.
         /// </summary>
         /// <param name="response">The response to be parsed.</param>
-        /// <returns>Returns an instance of <code>SpotifyGetArtistResponse</code>.</returns>
+        /// <returns>An instance of <see cref="SpotifyGetArtistResponse"/>.</returns>
         public static SpotifyGetArtistResponse ParseResponse(SocialHttpResponse response) {
             return response == null ? null : new SpotifyGetArtistResponse(response);
         }

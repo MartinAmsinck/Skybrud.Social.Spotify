@@ -5,6 +5,9 @@ using Skybrud.Social.Spotify.Responses.Authentication;
 
 namespace Skybrud.Social.Spotify {
 
+    /// <summary>
+    /// Class working as an entry point to the Spotify Web API.
+    /// </summary>
     public class SpotifyService {
 
         #region Properties
@@ -33,7 +36,7 @@ namespace Skybrud.Social.Spotify {
         #region Static methods
 
         /// <summary>
-        /// Initialize a new service instance from the specified OAuth client.
+        /// Initialize a new service instance from the specified OAuth <paramref name="client"/>.
         /// </summary>
         /// <param name="client">The OAuth client.</param>
         /// <returns>The created instance of <see cref="Skybrud.Social.Spotify.SpotifyService" />.</returns>

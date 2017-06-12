@@ -1,6 +1,8 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
+using Newtonsoft.Json.Linq;
+using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Http;
+using Skybrud.Social.Spotify.Exceptions;
 
 namespace Skybrud.Social.Spotify.Responses {
 
@@ -26,8 +28,15 @@ namespace Skybrud.Social.Spotify.Responses {
             // Skip error checking if the server responds with an OK status code
             if (response.StatusCode == HttpStatusCode.OK) return;
 
+            // Parse the response body
+            JObject obj = ParseJsonObject(response.Body);
+
             // Now throw some exceptions
-            throw new Exception("WTF?");
+            throw new SpotifyHttpException(
+                response,
+                obj.GetString("error"),
+                obj.GetString("error_description")
+            );
 
         }
 

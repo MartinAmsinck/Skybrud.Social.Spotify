@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Endpoints\Raw\SpotifyArtistsRawEndpoint.cs" />
     <Compile Include="Endpoints\SpotifyArtistsEndpoint.cs" />
+    <Compile Include="Exceptions\SpotifyHttpException.cs" />
     <Compile Include="Models\Albums\SpotifyAlbumType.cs" />
     <Compile Include="OAuth\SpotifyOAuthClient.cs" />
     <Compile Include="Models\Albums\SpotifyAlbumTypesCollection.cs" />

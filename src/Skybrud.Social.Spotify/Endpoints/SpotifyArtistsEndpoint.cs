@@ -41,7 +41,7 @@ namespace Skybrud.Social.Spotify.Endpoints {
         /// Gets Spotify catalog information for a single artist identified by their unique Spotify ID.
         /// </summary>
         /// <param name="id">The Spotify ID for the artist.</param>
-        /// <returns>Returns an instance of <code>SocialHttpRequest</code> representing the response.</returns>
+        /// <returns>An instance of <see cref="SpotifyGetArtistResponse"/> representing the response.</returns>
         public SpotifyGetArtistResponse GetArtist(string id) {
             return SpotifyGetArtistResponse.ParseResponse(Raw.GetArtist(id));
         }
@@ -50,7 +50,7 @@ namespace Skybrud.Social.Spotify.Endpoints {
         /// Gets Spotify catalog information for several artists based on their Spotify IDs.
         /// </summary>
         /// <param name="ids">A list of the Spotify IDs for the artists. Maximum: 50 IDs.</param>
-        /// <returns>Returns an instance of <code>SocialHttpRequest</code> representing the response.</returns>
+        /// <returns>An instance of <see cref="SpotifyGetArtistsResponse"/> representing the response.</returns>
         public SpotifyGetArtistsResponse GetArtists(params string[] ids) {
             return SpotifyGetArtistsResponse.ParseResponse(Raw.GetArtists(ids));
         }

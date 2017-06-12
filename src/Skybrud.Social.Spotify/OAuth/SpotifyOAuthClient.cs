@@ -8,6 +8,9 @@ using Skybrud.Social.Spotify.Scopes;
 
 namespace Skybrud.Social.Spotify.OAuth {
 
+    /// <summary>
+    /// Class for handling the raw communication with the Spotify Web API as well as any OAuth 2.0 communication.
+    /// </summary>
     public class SpotifyOAuthClient : SocialHttpClient {
 
         #region Properties
@@ -133,13 +136,16 @@ namespace Skybrud.Social.Spotify.OAuth {
             return "https://accounts.spotify.com/authorize?" + SocialUtils.Misc.NameValueCollectionToQueryString(query);
         
         }
-
+        
         /// <summary>
         /// Exchanges the specified <paramref name="authorizationCode"/> for a refresh token and an access token.
         /// </summary>
         /// <param name="authorizationCode">The authorization code received from the Spotify OAuth dialog.</param>
         /// <returns>An instance of <see cref="SpotifyTokenResponse"/> representing the response.</returns>
-        public SpotifyTokenResponse GetAccessTokenFromAuthCode(string authorizationCode) {
+        /// <see>
+        ///     <cref>https://developer.spotify.com/web-api/authorization-guide/</cref>
+        /// </see>
+        public SpotifyTokenResponse GetAccessTokenFromAuthorizationCode(string authorizationCode) {
 
             // Input validation
             if (String.IsNullOrWhiteSpace(authorizationCode)) throw new ArgumentNullException("authorizationCode");
@@ -169,18 +175,19 @@ namespace Skybrud.Social.Spotify.OAuth {
         /// </summary>
         /// <param name="refreshToken">The refresh token of the user.</param>
         /// <returns>An instance of <see cref="SpotifyTokenResponse"/> representing the response.</returns>
+        /// <see>
+        ///     <cref>https://developer.spotify.com/web-api/authorization-guide/#request-access-token-from-refresh-token</cref>
+        /// </see>
         public SpotifyTokenResponse GetAccessTokenFromRefreshToken(string refreshToken) {
 
             // Input validation
             if (String.IsNullOrWhiteSpace(refreshToken)) throw new ArgumentNullException("refreshToken");
             if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException("ClientId");
             if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
-            if (String.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException("RedirectUri");
 
             // Initialize the POST data
             NameValueCollection data = new NameValueCollection {
                 {"client_id", ClientId},
-                {"redirect_uri", RedirectUri},
                 {"client_secret", ClientSecret},
                 {"refresh_token", refreshToken },
                 {"grant_type", "refresh_token"}

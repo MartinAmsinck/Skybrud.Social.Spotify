@@ -5,6 +5,9 @@ using Skybrud.Essentials.Strings;
 
 namespace Skybrud.Social.Spotify.Models.Albums {
 
+    /// <summary>
+    /// Class representing a collection of album types.
+    /// </summary>
     public class SpotifyAlbumTypesCollection {
 
         #region Private fields
@@ -15,14 +18,23 @@ namespace Skybrud.Social.Spotify.Models.Albums {
 
         #region Properties
 
+        /// <summary>
+        /// Gets the amount of album types in the collection.
+        /// </summary>
         public int Count {
             get { return _list.Count; }
         }
 
+        /// <summary>
+        /// Gets an array of the album types contained in the collection.
+        /// </summary>
         public SpotifyAlbumType[] Types {
             get { return _list.ToArray(); }
         }
 
+        /// <summary>
+        /// Gets whether the collection is empty.
+        /// </summary>
         public bool IsEmpty {
             get { return _list.Count == 0; }
         }
@@ -31,15 +43,28 @@ namespace Skybrud.Social.Spotify.Models.Albums {
 
         #region Member methods
 
-        public void AddType(SpotifyAlbumType type) {
+        /// <summary>
+        /// Adds the specified <paramref name="type"/>.
+        /// </summary>
+        /// <param name="type">The album type to be added.</param>
+        public void Add(SpotifyAlbumType type) {
             _list.Add(type);
         }
 
-        public void RemoveType(SpotifyAlbumType type) {
+        /// <summary>
+        /// Removes the specified <paramref name="type"/>.
+        /// </summary>
+        /// <param name="type">The album type to be removed.</param>
+        public void Remove(SpotifyAlbumType type) {
             _list.Remove(type);
         }
 
-        public bool HasType(SpotifyAlbumType type) {
+        /// <summary>
+        /// Gets whether the collection contains the specified <paramref name="type"/>.
+        /// </summary>
+        /// <param name="type">The album type.</param>
+        /// <returns><code>true</code> if the collection contains <paramref name="type"/>, otherwise <code>false</code>.</returns>
+        public bool Contains(SpotifyAlbumType type) {
             return _list.Contains(type);
         }
 
