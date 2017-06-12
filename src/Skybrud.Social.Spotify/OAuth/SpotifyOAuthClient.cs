@@ -42,14 +42,14 @@ namespace Skybrud.Social.Spotify.OAuth {
         #region Constructors
 
         /// <summary>
-        /// Initializes an OAuth client with empty information.
+        /// Initializes a new OAuth client with default options.
         /// </summary>
         public SpotifyOAuthClient() {
             Artists = new SpotifyArtistsRawEndpoint(this);
         }
 
         /// <summary>
-        /// Initializes an OAuth client with the specified access token.
+        /// Initializes a new OAuth client with the specified <paramref name="accessToken"/>.
         /// </summary>
         /// <param name="accessToken">A valid access token.</param>
         public SpotifyOAuthClient(string accessToken) : this() {
@@ -57,7 +57,8 @@ namespace Skybrud.Social.Spotify.OAuth {
         }
         
         /// <summary>
-        /// Initializes an OAuth client with the specified client ID and client secret.
+        /// Initializes a new OAuth client with the specified <paramref name="clientId"/> and
+        /// <paramref name="clientSecret"/>.
         /// </summary>
         /// <param name="clientId">The ID of the client.</param>
         /// <param name="clientSecret">The secret of the client.</param>
@@ -67,7 +68,8 @@ namespace Skybrud.Social.Spotify.OAuth {
         }
 
         /// <summary>
-        /// Initializes an OAuth client with the specified client ID, client secret and return URI.
+        /// Initializes a new OAuth client with the specified <paramref name="clientId"/>,
+        /// <paramref name="clientSecret"/> and <paramref name="redirectUri"/>.
         /// </summary>
         /// <param name="clientId">The ID of the client.</param>
         /// <param name="clientSecret">The secret of the client.</param>
@@ -83,30 +85,30 @@ namespace Skybrud.Social.Spotify.OAuth {
         #region Member methods
         
         /// <summary>
-        /// Generates the authorization URL using the specified <code>state</code>.
+        /// Generates the authorization URL using the specified <paramref name="state"/>.
         /// </summary>
         /// <param name="state">The state to send to the Spotify OAuth login page.</param>
-        /// <returns>Returns an authorization URL based on <code>state</code>.</returns>
+        /// <returns>An authorization URL based on <paramref name="state"/>.</returns>
         public string GetAuthorizationUrl(string state) {
             return GetAuthorizationUrl(state, default(string[]));
         }
 
         /// <summary>
-        /// Generates the authorization URL using the specified state and scope.
+        /// Generates the authorization URL using the specified <paramref name="state"/> and <paramref name="scope"/>.
         /// </summary>
         /// <param name="state">The state to send to the Spotify OAuth login page.</param>
         /// <param name="scope">The scope of the application.</param>
-        /// <returns>Returns an authorization URL based on <code>state</code> and <code>scope</code>.</returns>
+        /// <returns>An authorization URL based on <paramref name="state"/> and <paramref name="scope"/>.</returns>
         public string GetAuthorizationUrl(string state, SpotifyScopeCollection scope) {
             return GetAuthorizationUrl(state, scope == null ? null : scope.ToString());
         }
         
         /// <summary>
-        /// Generates the authorization URL using the specified state and scope.
+        /// Generates the authorization URL using the specified <paramref name="state"/> and <paramref name="scope"/>.
         /// </summary>
         /// <param name="state">The state to send to the Spotify OAuth login page.</param>
         /// <param name="scope">The scope of the application.</param>
-        /// <returns>Returns an authorization URL based on <code>state</code> and <code>scope</code>.</returns>
+        /// <returns>An authorization URL based on <paramref name="state"/> and <paramref name="scope"/>.</returns>
         public string GetAuthorizationUrl(string state, params string[] scope) {
 
             // Input validation
@@ -126,14 +128,14 @@ namespace Skybrud.Social.Spotify.OAuth {
         }
 
         /// <summary>
-        /// Exchanges the specified authorization code for a refresh token and an access token.
+        /// Exchanges the specified <paramref name="authorizationCode"/> for a refresh token and an access token.
         /// </summary>
-        /// <param name="authCode">The authorization code received from the Spotify OAuth dialog.</param>
-        /// <returns>Returns an access token based on the specified <code>authCode</code>.</returns>
-        public SpotifyTokenResponse GetAccessTokenFromAuthCode(string authCode) {
+        /// <param name="authorizationCode">The authorization code received from the Spotify OAuth dialog.</param>
+        /// <returns>An instance of <see cref="SpotifyTokenResponse"/> representing the response.</returns>
+        public SpotifyTokenResponse GetAccessTokenFromAuthCode(string authorizationCode) {
 
             // Input validation
-            if (String.IsNullOrWhiteSpace(authCode)) throw new ArgumentNullException("authCode");
+            if (String.IsNullOrWhiteSpace(authorizationCode)) throw new ArgumentNullException("authorizationCode");
             if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException("ClientId");
             if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
             if (String.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException("RedirectUri");
@@ -141,7 +143,7 @@ namespace Skybrud.Social.Spotify.OAuth {
             // Initialize the POST data
             NameValueCollection data = new NameValueCollection {
                 {"grant_type", "authorization_code"},
-                {"code", authCode },
+                {"code", authorizationCode },
                 {"redirect_uri", RedirectUri},
                 {"client_id", ClientId},
                 {"client_secret", ClientSecret}
@@ -156,10 +158,10 @@ namespace Skybrud.Social.Spotify.OAuth {
         }
 
         /// <summary>
-        /// Gets a new access token from the specified <code>refreshToken</code>.
+        /// Gets a new access token from the specified <paramref name="refreshToken"/>.
         /// </summary>
         /// <param name="refreshToken">The refresh token of the user.</param>
-        /// <returns>Returns an access token based on the specified <code>refreshToken</code>.</returns>
+        /// <returns>An instance of <see cref="SpotifyTokenResponse"/> representing the response.</returns>
         public SpotifyTokenResponse GetAccessTokenFromRefreshToken(string refreshToken) {
 
             // Input validation
