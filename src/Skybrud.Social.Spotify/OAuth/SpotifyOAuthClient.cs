@@ -177,7 +177,7 @@ namespace Skybrud.Social.Spotify.OAuth {
             };
 
             // Make the call to the API
-            SocialHttpResponse response = SocialUtils.Http.DoHttpPostRequest("https://login.live.com/oauth20_token.srf", null, data);
+            SocialHttpResponse response = SocialUtils.Http.DoHttpPostRequest("https://accounts.spotify.com/api/token", null, data);
 
             // Parse the response
             return SpotifyTokenResponse.ParseResponse(response);
