@@ -107,6 +107,13 @@ namespace Skybrud.Social.Spotify.OAuth {
         /// <param name="scope">The scope of the application.</param>
         /// <returns>Returns an authorization URL based on <code>state</code> and <code>scope</code>.</returns>
         public string GetAuthorizationUrl(string state, params string[] scope) {
+
+            // Input validation
+            if (String.IsNullOrWhiteSpace(state)) throw new ArgumentNullException("state");
+            if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException("ClientId");
+            if (String.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException("RedirectUri");
+            
+            // Construct the authorization URL
             return "https://accounts.spotify.com/authorize?" + SocialUtils.Misc.NameValueCollectionToQueryString(new NameValueCollection {
                 {"client_id", ClientId},
                 {"response_type", "code"},
@@ -114,6 +121,7 @@ namespace Skybrud.Social.Spotify.OAuth {
                 {"state", state},
                 {"scope", String.Join(" ", scope ?? new string[0])}
             });
+        
         }
 
         /// <summary>
@@ -122,6 +130,12 @@ namespace Skybrud.Social.Spotify.OAuth {
         /// <param name="authCode">The authorization code received from the Spotify OAuth dialog.</param>
         /// <returns>Returns an access token based on the specified <code>authCode</code>.</returns>
         public SpotifyTokenResponse GetAccessTokenFromAuthCode(string authCode) {
+
+            // Input validation
+            if (String.IsNullOrWhiteSpace(authCode)) throw new ArgumentNullException("authCode");
+            if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException("ClientId");
+            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
+            if (String.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException("RedirectUri");
 
             // Initialize the POST data
             NameValueCollection data = new NameValueCollection {
@@ -146,6 +160,12 @@ namespace Skybrud.Social.Spotify.OAuth {
         /// <param name="refreshToken">The refresh token of the user.</param>
         /// <returns>Returns an access token based on the specified <code>refreshToken</code>.</returns>
         public SpotifyTokenResponse GetAccessTokenFromRefreshToken(string refreshToken) {
+
+            // Input validation
+            if (String.IsNullOrWhiteSpace(refreshToken)) throw new ArgumentNullException("refreshToken");
+            if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException("ClientId");
+            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
+            if (String.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException("RedirectUri");
 
             // Initialize the POST data
             NameValueCollection data = new NameValueCollection {
