@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Specialized;
 using Skybrud.Essentials.Common;
 using Skybrud.Social.Http;
+using Skybrud.Social.Interfaces.Http;
 using Skybrud.Social.Spotify.Endpoints.Raw;
 using Skybrud.Social.Spotify.Responses.Authentication;
 using Skybrud.Social.Spotify.Scopes;
@@ -124,17 +124,17 @@ namespace Skybrud.Social.Spotify.OAuth {
             }
 
             // Construct the query string
-            NameValueCollection query = new NameValueCollection {
-                {"client_id", ClientId},
-                {"response_type", "code"},
-                {"redirect_uri", RedirectUri},
-                {"state", state},
-                {"scope", String.Join(" ", scope ?? new string[0])}
-            };
+
+            IHttpQueryString query = new SocialHttpQueryString();
+            query.Add("client_id", ClientId);
+            query.Add("response_type", "code");
+            query.Add("redirect_uri", RedirectUri);
+            query.Add("state", state);
+            query.Add("scope", String.Join(" ", scope ?? new string[0]));
 
             // Construct the authorization URL
-            return "https://accounts.spotify.com/authorize?" + SocialUtils.Misc.NameValueCollectionToQueryString(query);
-        
+            return "https://accounts.spotify.com/authorize?" + query;
+
         }
         
         /// <summary>
@@ -154,18 +154,25 @@ namespace Skybrud.Social.Spotify.OAuth {
             if (String.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException("RedirectUri");
 
             // Initialize the POST data
-            NameValueCollection data = new NameValueCollection {
-                {"grant_type", "authorization_code"},
-                {"code", authorizationCode },
-                {"redirect_uri", RedirectUri},
-                {"client_id", ClientId},
-                {"client_secret", ClientSecret}
+            IHttpPostData postData = new SocialHttpPostData();
+            postData.Add("grant_type", "authorization_code");
+            postData.Add("code", authorizationCode);
+            postData.Add("redirect_uri", RedirectUri);
+            postData.Add("client_id", ClientId);
+            postData.Add("client_secret", ClientSecret);
+
+            // Initialize the request
+            SocialHttpRequest request = new SocialHttpRequest
+            {
+                Method = SocialHttpMethod.Post,
+                Url = "https://accounts.spotify.com/api/token",
+                PostData = postData
             };
 
-            // Make the call to the API
-            SocialHttpResponse response = SocialUtils.Http.DoHttpPostRequest("https://accounts.spotify.com/api/token", null, data);
+            // Make a call to the server
+            SocialHttpResponse response = request.GetResponse();
 
-            // Parse the response
+            // Parse the JSON response
             return SpotifyTokenResponse.ParseResponse(response);
 
         }
@@ -186,17 +193,23 @@ namespace Skybrud.Social.Spotify.OAuth {
             if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
 
             // Initialize the POST data
-            NameValueCollection data = new NameValueCollection {
-                {"client_id", ClientId},
-                {"client_secret", ClientSecret},
-                {"refresh_token", refreshToken },
-                {"grant_type", "refresh_token"}
+            IHttpPostData postData = new SocialHttpPostData();
+            postData.Add("client_id", ClientId);
+            postData.Add("client_secret", ClientSecret);
+            postData.Add("refresh_token", refreshToken);
+            postData.Add("grant_type", "refresh_token");
+
+            SocialHttpRequest request = new SocialHttpRequest
+            {
+                Method = SocialHttpMethod.Post,
+                Url = "https://accounts.spotify.com/api/token",
+                PostData = postData
             };
 
-            // Make the call to the API
-            SocialHttpResponse response = SocialUtils.Http.DoHttpPostRequest("https://accounts.spotify.com/api/token", null, data);
+            // Make a call to the server
+            SocialHttpResponse response = request.GetResponse();
 
-            // Parse the response
+            // Parse the JSON response
             return SpotifyTokenResponse.ParseResponse(response);
 
         }
