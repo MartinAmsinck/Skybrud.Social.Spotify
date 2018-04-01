@@ -16,13 +16,17 @@ namespace Skybrud.Social.Spotify.Models.Artists {
         /// <summary>
         /// Gets a Spotify URL of the artist.
         /// </summary>
-        public string Spotify { get; private set; }
+        public string Spotify { get; }
 
         #endregion
 
         #region Constructors
 
-        private SpotifyArtistUrlCollection(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        protected SpotifyArtistUrlCollection(JObject obj) : base(obj) {
             Spotify = obj.GetString("spotify");
         }
 

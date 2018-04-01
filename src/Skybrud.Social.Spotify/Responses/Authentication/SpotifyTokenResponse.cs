@@ -1,8 +1,12 @@
-﻿using Skybrud.Social.Http;
+﻿using System;
+using Skybrud.Social.Http;
 using Skybrud.Social.Spotify.Models.Authentication;
 
 namespace Skybrud.Social.Spotify.Responses.Authentication {
     
+    /// <summary>
+    /// Class representing a token response received from the Spotify Web API.
+    /// </summary>
     public class SpotifyTokenResponse : SpotifyResponse<SpotifyToken> {
         
         #region Constructors
@@ -27,7 +31,8 @@ namespace Skybrud.Social.Spotify.Responses.Authentication {
         /// <param name="response">The response to be parsed.</param>
         /// <returns>An instance of <see cref="SpotifyTokenResponse"/>.</returns>
         public static SpotifyTokenResponse ParseResponse(SocialHttpResponse response) {
-            return response == null ? null : new SpotifyTokenResponse(response);
+            if (response == null) throw new ArgumentNullException(nameof(response));
+            return new SpotifyTokenResponse(response);
         }
 
         #endregion

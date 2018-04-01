@@ -38,7 +38,7 @@ namespace Skybrud.Social.Spotify.OAuth {
         /// <summary>
         /// Gets a reference to the raw artists endpoint.
         /// </summary>
-        public SpotifyArtistsRawEndpoint Artists { get; private set; }
+        public SpotifyArtistsRawEndpoint Artists { get; }
 
         #endregion
         
@@ -115,16 +115,15 @@ namespace Skybrud.Social.Spotify.OAuth {
         public string GetAuthorizationUrl(string state, params string[] scope) {
 
             // Input validation
-            if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException("ClientId");
-            if (String.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException("RedirectUri");
+            if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException(nameof(ClientId));
+            if (String.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException(nameof(RedirectUri));
             
             // Do we have a valid "state" ?
             if (String.IsNullOrWhiteSpace(state)) {
-                throw new ArgumentNullException("state", "A valid state should be specified as it is part of the security of OAuth 2.0.");
+                throw new ArgumentNullException(nameof(state), "A valid state should be specified as it is part of the security of OAuth 2.0.");
             }
 
             // Construct the query string
-
             IHttpQueryString query = new SocialHttpQueryString();
             query.Add("client_id", ClientId);
             query.Add("response_type", "code");
@@ -148,10 +147,10 @@ namespace Skybrud.Social.Spotify.OAuth {
         public SpotifyTokenResponse GetAccessTokenFromAuthorizationCode(string authorizationCode) {
 
             // Input validation
-            if (String.IsNullOrWhiteSpace(authorizationCode)) throw new ArgumentNullException("authorizationCode");
-            if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException("ClientId");
-            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
-            if (String.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException("RedirectUri");
+            if (String.IsNullOrWhiteSpace(authorizationCode)) throw new ArgumentNullException(nameof(authorizationCode));
+            if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException(nameof(ClientId));
+            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException(nameof(ClientSecret));
+            if (String.IsNullOrWhiteSpace(RedirectUri)) throw new PropertyNotSetException(nameof(RedirectUri));
 
             // Initialize the POST data
             IHttpPostData postData = new SocialHttpPostData();
@@ -162,8 +161,7 @@ namespace Skybrud.Social.Spotify.OAuth {
             postData.Add("client_secret", ClientSecret);
 
             // Initialize the request
-            SocialHttpRequest request = new SocialHttpRequest
-            {
+            SocialHttpRequest request = new SocialHttpRequest {
                 Method = SocialHttpMethod.Post,
                 Url = "https://accounts.spotify.com/api/token",
                 PostData = postData
@@ -188,9 +186,9 @@ namespace Skybrud.Social.Spotify.OAuth {
         public SpotifyTokenResponse GetAccessTokenFromRefreshToken(string refreshToken) {
 
             // Input validation
-            if (String.IsNullOrWhiteSpace(refreshToken)) throw new ArgumentNullException("refreshToken");
-            if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException("ClientId");
-            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException("ClientSecret");
+            if (String.IsNullOrWhiteSpace(refreshToken)) throw new ArgumentNullException(nameof(refreshToken));
+            if (String.IsNullOrWhiteSpace(ClientId)) throw new PropertyNotSetException(nameof(ClientId));
+            if (String.IsNullOrWhiteSpace(ClientSecret)) throw new PropertyNotSetException(nameof(ClientSecret));
 
             // Initialize the POST data
             IHttpPostData postData = new SocialHttpPostData();
@@ -199,8 +197,7 @@ namespace Skybrud.Social.Spotify.OAuth {
             postData.Add("refresh_token", refreshToken);
             postData.Add("grant_type", "refresh_token");
 
-            SocialHttpRequest request = new SocialHttpRequest
-            {
+            SocialHttpRequest request = new SocialHttpRequest {
                 Method = SocialHttpMethod.Post,
                 Url = "https://accounts.spotify.com/api/token",
                 PostData = postData

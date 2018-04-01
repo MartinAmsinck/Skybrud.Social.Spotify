@@ -16,14 +16,12 @@ namespace Skybrud.Social.Spotify.Endpoints {
         /// <summary>
         /// Gets a reference to the Spotify service.
         /// </summary>
-        public SpotifyService Service { get; private set; }
+        public SpotifyService Service { get; }
 
         /// <summary>
         /// Gets a reference to the raw endpoint.
         /// </summary>
-        public SpotifyArtistsRawEndpoint Raw {
-            get { return Service.Client.Artists; }
-        }
+        public SpotifyArtistsRawEndpoint Raw => Service.Client.Artists;
 
         #endregion
 

@@ -14,29 +14,33 @@ namespace Skybrud.Social.Spotify.Models.Authentication {
         /// <summary>
         /// Gets the access token.
         /// </summary>
-        public string AccessToken { get; private set; }
+        public string AccessToken { get; }
 
         /// <summary>
         /// Gets the type of the access token. Given the authentication flows supported by Skybrud.Social, this will
         /// always be <code>bearer</code>.
         /// </summary>
-        public string TokenType { get; private set; }
+        public string TokenType { get; }
 
         /// <summary>
         /// Gets an instance of <see cref="TimeSpan"/> representing the time until the access token will expire.
         /// </summary>
-        public TimeSpan ExpiresIn { get; private set; }
+        public TimeSpan ExpiresIn { get; }
 
         /// <summary>
         /// Gets a refresh token that can be used to obtain a new access tokens.
         /// </summary>
-        public string RefreshToken { get; private set; }
+        public string RefreshToken { get; }
 
         #endregion
 
         #region Constructors
 
-        private SpotifyToken(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        protected SpotifyToken(JObject obj) : base(obj) {
             AccessToken = obj.GetString("access_token");
             TokenType = obj.GetString("token_type");
             ExpiresIn = obj.GetDouble("expires_in", TimeSpan.FromSeconds);

@@ -3,6 +3,9 @@ using Skybrud.Essentials.Json.Extensions;
 
 namespace Skybrud.Social.Spotify.Models.Artists {
 
+    /// <summary>
+    /// Class representing a collection of artists.
+    /// </summary>
     public class SpotifyArtistCollection : SpotifyObject {
 
         #region Properties
@@ -10,13 +13,17 @@ namespace Skybrud.Social.Spotify.Models.Artists {
         /// <summary>
         /// Gets an array of artists.
         /// </summary>
-        public SpotifyArtist[] Artists { get; private set; }
+        public SpotifyArtist[] Artists { get; }
 
         #endregion
 
         #region Constructors
 
-        private SpotifyArtistCollection(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        protected SpotifyArtistCollection(JObject obj) : base(obj) {
             Artists = obj.GetArrayItems("artists", SpotifyArtist.Parse);
         }
 

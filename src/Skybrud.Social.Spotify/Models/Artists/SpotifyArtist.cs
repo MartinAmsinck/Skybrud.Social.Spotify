@@ -17,60 +17,64 @@ namespace Skybrud.Social.Spotify.Models.Artists {
         /// <summary>
         /// Gets a collection of external URLs of the artist.
         /// </summary>
-        public SpotifyArtistUrlCollection ExternalUrls { get; private set; }
+        public SpotifyArtistUrlCollection ExternalUrls { get; }
 
         /// <summary>
         /// Gets information about the followers of the artist.
         /// </summary>
-        public SpotifyFollowers Followers { get; private set; }
+        public SpotifyFollowers Followers { get; }
 
         /// <summary>
         /// Gets a list of the genres the artist is associated with.
         /// </summary>
-        public string[] Genres { get; private set; }
+        public string[] Genres { get; }
 
         /// <summary>
         /// Gets a link to the Web API endpoint providing full details of the artist.
         /// </summary>
-        public string Href { get; private set; }
+        public string Href { get; }
 
         /// <summary>
         /// Gets the Spotify ID of the artist.
         /// </summary>
-        public string Id { get; private set; }
+        public string Id { get; }
 
         /// <summary>
         /// Gets a collection of images of the artist in various sizes, widest first.
         /// </summary>
-        public SpotifyImage[] Images { get; private set; }
+        public SpotifyImage[] Images { get; }
 
         /// <summary>
         /// Gets the name of the artist.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         /// <summary>
-        /// Gets the popularity of the artist. The value will be between <code>0</code> and <code>100</code>, with
-        /// <code>100</code> being the most popular. The artist's popularity is calculated from the popularity of all
+        /// Gets the popularity of the artist. The value will be between <c>0</c> and <c>100</c>, with
+        /// <c>100</c> being the most popular. The artist's popularity is calculated from the popularity of all
         /// the artist's tracks.
         /// </summary>
-        public int Popularity { get; private set; }
+        public int Popularity { get; }
 
         /// <summary>
-        /// Gets the type of the Spotify object. Always <code>artist</code>.
+        /// Gets the type of the Spotify object. Always <c>artist</c>.
         /// </summary>
-        public string Type { get; private set; }
+        public string Type { get; }
 
         /// <summary>
         /// Gets the URI of the artist.
         /// </summary>
-        public string Uri { get; private set; }
+        public string Uri { get; }
 
         #endregion
 
         #region Constructors
 
-        private SpotifyArtist(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        protected SpotifyArtist(JObject obj) : base(obj) {
             ExternalUrls = obj.GetObject("external_urls", SpotifyArtistUrlCollection.Parse);
             Followers = obj.GetObject("followers", SpotifyFollowers.Parse);
             Genres = obj.GetStringArray("genres");

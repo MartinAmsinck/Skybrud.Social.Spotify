@@ -16,7 +16,7 @@ namespace Skybrud.Social.Spotify.Endpoints.Raw {
         /// <summary>
         /// Gets a reference to the OAuth client.
         /// </summary>
-        public SpotifyOAuthClient Client { get; private set; }
+        public SpotifyOAuthClient Client { get; }
 
         #endregion
 
@@ -52,7 +52,7 @@ namespace Skybrud.Social.Spotify.Endpoints.Raw {
         ///     <cref>https://developer.spotify.com/web-api/get-several-artists/</cref>
         /// </see>
         public SocialHttpResponse GetArtists(params string[] ids) {
-            if (ids == null || ids.Length == 0) throw new ArgumentNullException("ids");
+            if (ids == null || ids.Length == 0) throw new ArgumentNullException(nameof(ids));
             return Client.DoHttpGetRequest("https://api.spotify.com/v1/artists/?ids=" + String.Join(",", ids));
         }
 
@@ -65,7 +65,7 @@ namespace Skybrud.Social.Spotify.Endpoints.Raw {
         ///     <cref>https://developer.spotify.com/web-api/get-artists-albums/</cref>
         /// </see>
         public SocialHttpResponse GetAlbums(string id) {
-            if (String.IsNullOrWhiteSpace(id)) throw new ArgumentNullException("id");
+            if (String.IsNullOrWhiteSpace(id)) throw new ArgumentNullException(nameof(id));
             return Client.DoHttpGetRequest("https://api.spotify.com/v1/artists/" + id + "/albums");
         }
 
@@ -78,7 +78,7 @@ namespace Skybrud.Social.Spotify.Endpoints.Raw {
         ///     <cref>https://developer.spotify.com/web-api/get-artists-albums/</cref>
         /// </see>
         public SocialHttpResponse GetAlbums(SpotifyGetAlbumsOptions options) {
-            if (options == null) throw new ArgumentNullException("options");
+            if (options == null) throw new ArgumentNullException(nameof(options));
             if (String.IsNullOrWhiteSpace(options.Id)) throw new PropertyNotSetException("options.Id");
             return Client.DoHttpGetRequest("https://api.spotify.com/v1/artists/" + options.Id + "/albums", options);
         }
@@ -93,8 +93,8 @@ namespace Skybrud.Social.Spotify.Endpoints.Raw {
         ///     <cref>https://developer.spotify.com/web-api/get-artists-top-tracks/</cref>
         /// </see>
         public SocialHttpResponse GetTopTracks(string id, string country) {
-            if (String.IsNullOrWhiteSpace(id)) throw new ArgumentNullException("id");
-            if (String.IsNullOrWhiteSpace(country)) throw new ArgumentNullException("country");
+            if (String.IsNullOrWhiteSpace(id)) throw new ArgumentNullException(nameof(id));
+            if (String.IsNullOrWhiteSpace(country)) throw new ArgumentNullException(nameof(country));
             return Client.DoHttpGetRequest("https://api.spotify.com/v1/artists/" + id + "/top-tracks?country=" + country);
         }
 
@@ -108,7 +108,7 @@ namespace Skybrud.Social.Spotify.Endpoints.Raw {
         ///     <cref>https://developer.spotify.com/web-api/get-related-artists/</cref>
         /// </see>
         public SocialHttpResponse GetRelatedArtists(string id) {
-            if (String.IsNullOrWhiteSpace(id)) throw new ArgumentNullException("id");
+            if (String.IsNullOrWhiteSpace(id)) throw new ArgumentNullException(nameof(id));
             return Client.DoHttpGetRequest("https://api.spotify.com/v1/artists/" + id + "/related-artists");
         }
 

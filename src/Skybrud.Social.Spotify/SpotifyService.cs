@@ -15,12 +15,12 @@ namespace Skybrud.Social.Spotify {
         /// <summary>
         /// Gets a reference to the internal OAuth client.
         /// </summary>
-        public SpotifyOAuthClient Client { get; private set; }
+        public SpotifyOAuthClient Client { get; }
 
         /// <summary>
         /// Gets a reference to the artists endpoint.
         /// </summary>
-        public SpotifyArtistsEndpoint Artists { get; private set; }
+        public SpotifyArtistsEndpoint Artists { get; }
 
         #endregion
 
@@ -41,7 +41,7 @@ namespace Skybrud.Social.Spotify {
         /// <param name="client">The OAuth client.</param>
         /// <returns>The created instance of <see cref="Skybrud.Social.Spotify.SpotifyService" />.</returns>
         public static SpotifyService CreateFromOAuthClient(SpotifyOAuthClient client) {
-            if (client == null) throw new ArgumentNullException("client");
+            if (client == null) throw new ArgumentNullException(nameof(client));
             return new SpotifyService(client);
         }
 
@@ -51,7 +51,7 @@ namespace Skybrud.Social.Spotify {
         /// <param name="accessToken">The access token.</param>
         /// <returns>The created instance of <see cref="Skybrud.Social.Spotify.SpotifyService" />.</returns>
         public static SpotifyService GreateFromAccessToken(string accessToken) {
-            if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException("accessToken");
+            if (String.IsNullOrWhiteSpace(accessToken)) throw new ArgumentNullException(nameof(accessToken));
             return new SpotifyService(new SpotifyOAuthClient(accessToken));
         }
 
@@ -64,9 +64,9 @@ namespace Skybrud.Social.Spotify {
         /// <returns>The created instance of <see cref="Skybrud.Social.Spotify.SpotifyService" />.</returns>
         public static SpotifyService CreateFromRefreshToken(string clientId, string clientSecret, string refreshToken) {
 
-            if (String.IsNullOrWhiteSpace(clientId)) throw new ArgumentNullException("clientId");
-            if (String.IsNullOrWhiteSpace(clientSecret)) throw new ArgumentNullException("clientSecret");
-            if (String.IsNullOrWhiteSpace(refreshToken)) throw new ArgumentNullException("refreshToken");
+            if (String.IsNullOrWhiteSpace(clientId)) throw new ArgumentNullException(nameof(clientId));
+            if (String.IsNullOrWhiteSpace(clientSecret)) throw new ArgumentNullException(nameof(clientSecret));
+            if (String.IsNullOrWhiteSpace(refreshToken)) throw new ArgumentNullException(nameof(refreshToken));
 
             // Initialize a new OAuth client
             SpotifyOAuthClient client = new SpotifyOAuthClient(clientId, clientSecret);

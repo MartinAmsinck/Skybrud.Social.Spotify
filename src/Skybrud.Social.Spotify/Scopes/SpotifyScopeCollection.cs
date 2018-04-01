@@ -20,9 +20,7 @@ namespace Skybrud.Social.Spotify.Scopes {
         /// <summary>
         /// Gets an array of all the scopes added to the collection.
         /// </summary>
-        public SpotifyScope[] Items {
-            get { return _list.ToArray(); }
-        }
+        public SpotifyScope[] Items => _list.ToArray();
 
         #endregion
 

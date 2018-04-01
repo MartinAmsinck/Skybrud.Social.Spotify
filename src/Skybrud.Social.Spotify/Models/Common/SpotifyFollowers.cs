@@ -18,18 +18,22 @@ namespace Skybrud.Social.Spotify.Models.Common {
         /// available. Please note that this will always be set to <code>null</code>, as the Web API does not support
         /// it at the moment.
         /// </summary>
-        public string Href { get; private set; }
+        public string Href { get; }
         
         /// <summary>
         /// Gets the total number of followers.
         /// </summary>
-        public int Total { get; private set; }
+        public int Total { get; }
 
         #endregion
 
         #region Constructors
 
-        private SpotifyFollowers(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        protected SpotifyFollowers(JObject obj) : base(obj) {
             Href = obj.GetString("href");
             Total = obj.GetInt32("total");
         }

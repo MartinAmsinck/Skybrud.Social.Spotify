@@ -21,23 +21,17 @@ namespace Skybrud.Social.Spotify.Models.Albums {
         /// <summary>
         /// Gets the amount of album types in the collection.
         /// </summary>
-        public int Count {
-            get { return _list.Count; }
-        }
+        public int Count => _list.Count;
 
         /// <summary>
         /// Gets an array of the album types contained in the collection.
         /// </summary>
-        public SpotifyAlbumType[] Types {
-            get { return _list.ToArray(); }
-        }
+        public SpotifyAlbumType[] Types => _list.ToArray();
 
         /// <summary>
         /// Gets whether the collection is empty.
         /// </summary>
-        public bool IsEmpty {
-            get { return _list.Count == 0; }
-        }
+        public bool IsEmpty => _list.Count == 0;
 
         #endregion
 
@@ -63,11 +57,15 @@ namespace Skybrud.Social.Spotify.Models.Albums {
         /// Gets whether the collection contains the specified <paramref name="type"/>.
         /// </summary>
         /// <param name="type">The album type.</param>
-        /// <returns><code>true</code> if the collection contains <paramref name="type"/>, otherwise <code>false</code>.</returns>
+        /// <returns><c>true</c> if the collection contains <paramref name="type"/>, otherwise <c>false</c>.</returns>
         public bool Contains(SpotifyAlbumType type) {
             return _list.Contains(type);
         }
 
+        /// <summary>
+        /// Returns a string representation of the collection.
+        /// </summary>
+        /// <returns>An instance of <see cref="System.String"/> representing the collection.</returns>
         public override string ToString() {
             return String.Join(",", from type in _list select StringUtils.ToUnderscore(type));
         }

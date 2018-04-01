@@ -6,7 +6,7 @@ using Skybrud.Social.Spotify.Models.Albums;
 namespace Skybrud.Social.Spotify.Options.Artists {
 
     /// <summary>
-    /// Class representing the options for a reqyest to get a list of albums of an artist.
+    /// Class representing the options for a request to get a list of albums of an artist.
     /// </summary>
     /// <see>
     ///     <cref>https://developer.spotify.com/web-api/get-artists-albums/</cref>
@@ -36,8 +36,7 @@ namespace Skybrud.Social.Spotify.Options.Artists {
         public string Market { get; set; }
 
         /// <summary>
-        /// Optional: Gets or sets the number of album objects to return. Default: <code>20</code>. Minimum:
-        /// <code>1</code>. Maximum: <code>50</code>.
+        /// Optional: Gets or sets the number of album objects to return. Default: <c>20</c>. Minimum: <c>1</c>. Maximum: <c>50</c>.
         /// </summary>
         public int Limit { get; set; }
 
@@ -50,6 +49,9 @@ namespace Skybrud.Social.Spotify.Options.Artists {
 
         #region Member methods
 
+        /// <summary>
+        /// Gets an instance of <see cref="IHttpQueryString"/> representing the GET parameters.
+        /// </summary>
         public IHttpQueryString GetQueryString() {
             
             SocialHttpQueryString query = new SocialHttpQueryString();

@@ -18,12 +18,12 @@ namespace Skybrud.Social.Spotify.Scopes {
         /// <summary>
         /// Gets the name of the scope.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         /// <summary>
         /// Gets the description of the scope.
         /// </summary>
-        public string Description { get; private set; }
+        public string Description { get; }
 
         #endregion
 
@@ -51,6 +51,10 @@ namespace Skybrud.Social.Spotify.Scopes {
 
         #region Member methods
 
+        /// <summary>
+        /// Returns a string representation of the scope.
+        /// </summary>
+        /// <returns>An instance of <see cref="System.String"/> representing the scope.</returns>
         public override string ToString() {
             return Name;
         }
@@ -73,7 +77,7 @@ namespace Skybrud.Social.Spotify.Scopes {
         /// Attempts to get a scope with the specified <paramref name="name"/>.
         /// </summary>
         /// <param name="name">The name of the scope.</param>
-        /// <returns>Gets a scope matching the specified <paramref name="name"/>, or <code>null</code> if not found.</returns>
+        /// <returns>Gets a scope matching the specified <paramref name="name"/>, or <c>null</c> if not found.</returns>
         public static SpotifyScope GetScope(string name) {
             SpotifyScope scope;
             return Scopes.TryGetValue(name, out scope) ? scope : null;
@@ -83,8 +87,7 @@ namespace Skybrud.Social.Spotify.Scopes {
         /// Gets whether the scope is a known scope.
         /// </summary>
         /// <param name="name">The name of the scope.</param>
-        /// <returns><code>true</code> if the specified <paramref name="name"/> matches a known scope, otherwise
-        /// <code>false</code>.</returns>
+        /// <returns><c>true</c> if the specified <paramref name="name"/> matches a known scope, otherwise <c>false</c>.</returns>
         public static bool ScopeExists(string name) {
             return Scopes.ContainsKey(name);
         }

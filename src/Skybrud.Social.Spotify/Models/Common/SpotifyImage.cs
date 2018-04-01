@@ -16,23 +16,27 @@ namespace Skybrud.Social.Spotify.Models.Common {
         /// <summary>
         /// Gets the height of the image.
         /// </summary>
-        public int Height { get; private set; }
+        public int Height { get; }
 
         /// <summary>
         /// The source URL of the image. 
         /// </summary>
-        public string Url { get; private set; }
+        public string Url { get; }
 
         /// <summary>
         /// Gets the width of the image.
         /// </summary>
-        public int Width { get; private set; }
+        public int Width { get; }
 
         #endregion
 
         #region Constructors
 
-        private SpotifyImage(JObject obj) : base(obj) {
+        /// <summary>
+        /// Initializes a new instance based on the specified <paramref name="obj"/>.
+        /// </summary>
+        /// <param name="obj">The instance of <see cref="JObject"/> to be parsed.</param>
+        protected SpotifyImage(JObject obj) : base(obj) {
             Height = obj.GetInt32("height");
             Url = obj.GetString("url");
             Width = obj.GetInt32("width");

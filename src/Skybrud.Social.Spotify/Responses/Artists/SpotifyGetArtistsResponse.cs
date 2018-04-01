@@ -1,8 +1,12 @@
-﻿using Skybrud.Social.Http;
+﻿using System;
+using Skybrud.Social.Http;
 using Skybrud.Social.Spotify.Models.Artists;
 
 namespace Skybrud.Social.Spotify.Responses.Artists {
 
+    /// <summary>
+    /// Class representing a response with a collection of artists.
+    /// </summary>
     public class SpotifyGetArtistsResponse : SpotifyResponse<SpotifyArtistCollection> {
         
         #region Constructors
@@ -27,7 +31,8 @@ namespace Skybrud.Social.Spotify.Responses.Artists {
         /// <param name="response">The response to be parsed.</param>
         /// <returns>An instance of <see cref="SpotifyGetArtistsResponse"/>.</returns>
         public static SpotifyGetArtistsResponse ParseResponse(SocialHttpResponse response) {
-            return response == null ? null : new SpotifyGetArtistsResponse(response);
+            if (response == null) throw new ArgumentNullException(nameof(response));
+            return new SpotifyGetArtistsResponse(response);
         }
 
         #endregion
