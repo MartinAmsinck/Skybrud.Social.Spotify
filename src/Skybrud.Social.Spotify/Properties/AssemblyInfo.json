@@ -1,10 +1,10 @@
 {
   "title": "Skybrud.Social.Spotify",
-  "description": "Authentication and service implementation for the Spotify Web API.",
-  "company": "Skybrud.dk",
+  "description": "Authentication and service implementation for the Spotify Web API",
+  "company": "Skybrud.dk a/s",
   "product": "Skybrud.Social",
   "copyright": "Copyright © 2017",
   "version": "1.0.0.0",
   "informationalVersion": "1.0.0-beta001",
-  "fileVersion": "0.0.871.3"
+  "fileVersion": "0.0.998.1"
 }

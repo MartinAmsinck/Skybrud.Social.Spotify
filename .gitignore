@@ -107,3 +107,7 @@ Backup*/
 UpgradeLog*.XML
 nuget/archive/*/*
 node_modules/
+*.ide-wal
+*.ide
+*.lock
+*.ide-shm
