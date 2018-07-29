@@ -31,7 +31,11 @@ namespace Skybrud.Social.Spotify {
         /// Gets a reference to the player endpoint.
         /// </summary>
         public SpotifyPlayerEndpoint Player { get; }
-        public SpotifyTracksEndpoint Tracks{ get; }
+
+        /// <summary>
+        /// Gets a reference to the tracks endpoint.
+        /// </summary>
+        public SpotifyTracksEndpoint Tracks { get; }
 
         /// <summary>
         /// Gets a reference to the users endpoint.

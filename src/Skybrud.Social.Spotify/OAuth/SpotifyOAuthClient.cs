@@ -50,7 +50,10 @@ namespace Skybrud.Social.Spotify.OAuth {
         /// </summary>
         public SpotifyPlayerRawEndpoint Player { get; set; }
 
-        public SpotifyTracksRawEndpoint	 Tracks { get; set; }
+        /// <summary>
+        /// Gets a reference to the raw tracks endpoint.
+        /// </summary>
+        public SpotifyTracksRawEndpoint Tracks { get; set; }
 
         /// <summary>
         /// Gets a reference to the raw users endpoint.
