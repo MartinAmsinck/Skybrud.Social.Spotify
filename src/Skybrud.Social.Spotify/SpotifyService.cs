@@ -29,6 +29,11 @@ namespace Skybrud.Social.Spotify {
         public SpotifyUserProfileEndpoint UserProfile { get; }
         public SpotifyTracksEndpoint Tracks{ get; }
 
+        /// <summary>
+        /// Gets a reference to the users endpoint.
+        /// </summary>
+        public SpotifyUsersEndpoint Users { get; }
+
         #endregion
 
         #region Constructors
@@ -39,7 +44,7 @@ namespace Skybrud.Social.Spotify {
             Artists = new SpotifyArtistsEndpoint(this);
             UserProfile = new SpotifyUserProfileEndpoint(this);
             Tracks = new SpotifyTracksEndpoint(this);
-
+            Users = new SpotifyUsersEndpoint(this);
         }
 
         #endregion
