@@ -1,18 +1,12 @@
-﻿using System;
-using Skybrud.Social.Http;
-using Skybrud.Social.Spotify.Endpoints.Raw;
-using Skybrud.Social.Spotify.Options.Artists;
-using Skybrud.Social.Spotify.Responses.Artists;
+﻿using Skybrud.Social.Spotify.Endpoints.Raw;
 using Skybrud.Social.Spotify.Responses.Player;
 
-namespace Skybrud.Social.Spotify.Endpoints
-{
+namespace Skybrud.Social.Spotify.Endpoints {
 
     /// <summary>
-    /// Class representing the implementation of the user profile endpoint.
+    /// Class representing the implementation of the player endpoint.
     /// </summary>
-    public class SpotifyUserProfileEndpoint
-    {
+    public class SpotifyPlayerEndpoint {
 
         #region Properties
 
@@ -24,17 +18,14 @@ namespace Skybrud.Social.Spotify.Endpoints
         /// <summary>
         /// Gets a reference to the raw endpoint.
         /// </summary>
-        //public SpotifyUserProfileRawEndpoint Raw => Service.Client.UserProfile;
-        public SpotifyUserProfileRawEndpoint Raw => Service.Client.UserProfile;
+        public SpotifyPlayerRawEndpoint Raw => Service.Client.Player;
 
         #endregion
 
         #region Constructors
 
-        internal SpotifyUserProfileEndpoint(SpotifyService service)
-        {
+        internal SpotifyPlayerEndpoint(SpotifyService service) {
             Service = service;
-            
         }
 
         #endregion
@@ -45,11 +36,12 @@ namespace Skybrud.Social.Spotify.Endpoints
         /// Get detailed profile information about the current user (including the current user’s username).
         /// </summary>
         /// <returns>An instance of <see cref="SpotifyGetPlayerResponse"/> representing the response.</returns>
-        public SpotifyGetPlayerResponse GetCurrentlyPlaying()
-        {
+        public SpotifyGetPlayerResponse GetCurrentlyPlaying() {
             return SpotifyGetPlayerResponse.ParseResponse(Raw.GetCurrentlyPlaying());
         }
 
         #endregion
+
     }
+
 }

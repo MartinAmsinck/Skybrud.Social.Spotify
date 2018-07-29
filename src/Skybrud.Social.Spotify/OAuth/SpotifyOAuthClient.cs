@@ -44,9 +44,13 @@ namespace Skybrud.Social.Spotify.OAuth {
         /// Gets a reference to the raw artists endpoint.
         /// </summary>
         public SpotifyArtistsRawEndpoint Artists { get; }
+        
+        /// <summary>
+        /// Gets a reference to the raw player endpoint.
+        /// </summary>
+        public SpotifyPlayerRawEndpoint Player { get; set; }
 
         public SpotifyTracksRawEndpoint	 Tracks { get; set; }
-        public SpotifyUserProfileRawEndpoint UserProfile { get; set; }
 
         /// <summary>
         /// Gets a reference to the raw users endpoint.
@@ -63,8 +67,8 @@ namespace Skybrud.Social.Spotify.OAuth {
         public SpotifyOAuthClient() {
             Albums = new SpotifyAlbumsRawEndpoint(this);
             Artists = new SpotifyArtistsRawEndpoint(this);
+            Player = new SpotifyPlayerRawEndpoint(this);
             Tracks = new SpotifyTracksRawEndpoint(this);
-            UserProfile = new SpotifyUserProfileRawEndpoint(this);
             Users = new SpotifyUsersRawEndpoint(this);
         }
 

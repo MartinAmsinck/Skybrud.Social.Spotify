@@ -1,16 +1,12 @@
-﻿using System;
-using Skybrud.Essentials.Common;
-using Skybrud.Social.Http;
+﻿using Skybrud.Social.Http;
 using Skybrud.Social.Spotify.OAuth;
-using Skybrud.Social.Spotify.Options.Artists;
 
 namespace Skybrud.Social.Spotify.Endpoints.Raw {
-    
+
     /// <summary>
-    /// Class representing the raw implementation of the user profile endpoint.
+    /// Class representing the raw implementation of the player endpoint.
     /// </summary>
-    public class SpotifyUserProfileRawEndpoint
-    {
+    public class SpotifyPlayerRawEndpoint {
 
         #region Properties
 
@@ -23,14 +19,14 @@ namespace Skybrud.Social.Spotify.Endpoints.Raw {
 
         #region Constructors
 
-        internal SpotifyUserProfileRawEndpoint(SpotifyOAuthClient client) {
+        internal SpotifyPlayerRawEndpoint(SpotifyOAuthClient client) {
             Client = client;
         }
 
         #endregion
 
         #region Member methods
-        
+
         /// <summary>
         /// Get the object currently being played on the user’s Spotify account.
         /// </summary>
@@ -38,11 +34,9 @@ namespace Skybrud.Social.Spotify.Endpoints.Raw {
         /// <see>
         ///     <cref>https://developer.spotify.com/documentation/web-api/reference/player/get-the-users-currently-playing-track/</cref>
         /// </see>
-        public SocialHttpResponse GetCurrentlyPlaying()
-        {
-            return Client.DoHttpGetRequest("https://api.spotify.com/v1/me/player/currently-playing");
+        public SocialHttpResponse GetCurrentlyPlaying() {
+            return Client.DoHttpGetRequest("/v1/me/player/currently-playing");
         }
-
 
         #endregion
 
