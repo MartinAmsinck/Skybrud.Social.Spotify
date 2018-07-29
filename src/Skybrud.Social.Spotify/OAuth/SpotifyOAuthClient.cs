@@ -34,6 +34,11 @@ namespace Skybrud.Social.Spotify.OAuth {
         /// Gets or sets the access token.
         /// </summary>
         public string AccessToken { get; set; }
+        
+        /// <summary>
+        /// Gets a reference to the raw albums endpoint.
+        /// </summary>
+        public SpotifyAlbumsRawEndpoint Albums { get; }
 
         /// <summary>
         /// Gets a reference to the raw artists endpoint.
@@ -50,8 +55,8 @@ namespace Skybrud.Social.Spotify.OAuth {
         /// <summary>
         /// Initializes a new OAuth client with default options.
         /// </summary>
-        public SpotifyOAuthClient()
-        {
+        public SpotifyOAuthClient() {
+            Albums = new SpotifyAlbumsRawEndpoint(this);
             Artists = new SpotifyArtistsRawEndpoint(this);
             Tracks = new SpotifyTracksRawEndpoint(this);
             UserProfile = new SpotifyUserProfileRawEndpoint(this);
