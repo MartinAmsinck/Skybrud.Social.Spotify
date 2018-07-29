@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
-using Skybrud.Essentials.Time;
 using Skybrud.Social.Spotify.Models.Common;
 
 namespace Skybrud.Social.Spotify.Models.Users {
