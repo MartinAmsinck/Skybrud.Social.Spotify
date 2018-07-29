@@ -1,8 +1,5 @@
 ﻿using Skybrud.Social.Http;
 using Skybrud.Social.Spotify.Models.Player;
-using Skybrud.Social.Spotify.Models.UserProfile;
-using Skybrud.Social.Spotify.Responses.Artists;
-using Skybrud.Social.Spotify.Responses.UserProfile;
 
 namespace Skybrud.Social.Spotify.Responses.Player {
     

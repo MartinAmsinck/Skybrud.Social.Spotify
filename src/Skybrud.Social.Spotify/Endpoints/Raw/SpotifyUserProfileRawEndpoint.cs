@@ -30,19 +30,7 @@ namespace Skybrud.Social.Spotify.Endpoints.Raw {
         #endregion
 
         #region Member methods
-
-        /// <summary>
-        /// Get detailed profile information about the current user (including the current user’s username).
-        /// </summary>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
-        /// <see>
-        ///     <cref>https://developer.spotify.com/web-api/get-artist/</cref>
-        /// </see>
-        public SocialHttpResponse GetMe()
-        {
-            return Client.DoHttpGetRequest("https://api.spotify.com/v1/me/");
-        }
-
+        
         /// <summary>
         /// Get the object currently being played on the user’s Spotify account.
         /// </summary>
@@ -54,22 +42,6 @@ namespace Skybrud.Social.Spotify.Endpoints.Raw {
         {
             return Client.DoHttpGetRequest("https://api.spotify.com/v1/me/player/currently-playing");
         }
-
-
-        /// <summary>
-        /// Get public profile information about a Spotify user identified by their unique user ID.
-        /// </summary>
-        /// <param name="id">The Spotify user ID for the user. </param>
-        /// <returns>An instance of <see cref="SocialHttpResponse"/> representing the raw response.</returns>
-        /// <see>
-        ///     <cref>https://developer.spotify.com/web-api/get-artist/</cref>
-        /// </see>
-        public SocialHttpResponse GetUser(string id)
-        {
-            if (String.IsNullOrWhiteSpace(id)) throw new ArgumentNullException(nameof(id));
-            return Client.DoHttpGetRequest("https://api.spotify.com/v1/users/" + id);
-        }
-
 
 
         #endregion
