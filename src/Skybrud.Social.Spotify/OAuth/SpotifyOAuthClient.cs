@@ -40,6 +40,9 @@ namespace Skybrud.Social.Spotify.OAuth {
         /// </summary>
         public SpotifyArtistsRawEndpoint Artists { get; }
 
+        public SpotifyTracksRawEndpoint	 Tracks { get; set; }
+        public SpotifyUserProfileRawEndpoint UserProfile { get; set; }
+
         #endregion
         
         #region Constructors
@@ -47,8 +50,11 @@ namespace Skybrud.Social.Spotify.OAuth {
         /// <summary>
         /// Initializes a new OAuth client with default options.
         /// </summary>
-        public SpotifyOAuthClient() {
+        public SpotifyOAuthClient()
+        {
             Artists = new SpotifyArtistsRawEndpoint(this);
+            Tracks = new SpotifyTracksRawEndpoint(this);
+            UserProfile = new SpotifyUserProfileRawEndpoint(this);
         }
 
         /// <summary>
@@ -213,6 +219,16 @@ namespace Skybrud.Social.Spotify.OAuth {
 
         #endregion
 
+        protected override void PrepareHttpRequest(SocialHttpRequest request)
+        {
+
+            // Append the access token to the query string if present in the client and not already
+            // specified in the query string
+            if (!request.QueryString.ContainsKey("access_token") && !String.IsNullOrWhiteSpace(AccessToken))
+            {
+                request.QueryString.Add("access_token", AccessToken);
+            }
+        }
     }
 
 }
