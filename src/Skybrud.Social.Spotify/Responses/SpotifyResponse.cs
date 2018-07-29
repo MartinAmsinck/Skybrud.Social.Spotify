@@ -31,6 +31,7 @@ namespace Skybrud.Social.Spotify.Responses {
 
             // Skip error checking if the server responds with an OK status code
             if (response.StatusCode == HttpStatusCode.OK) return;
+            if (response.StatusCode == HttpStatusCode.NoContent) return;
 
             // Parse the response body
             JObject obj = ParseJsonObject(response.Body);
