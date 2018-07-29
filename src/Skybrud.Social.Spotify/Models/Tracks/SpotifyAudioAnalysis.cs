@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Spotify.Models.Artists;
 
-namespace Skybrud.Social.Spotify.Models.Track
+namespace Skybrud.Social.Spotify.Models.Tracks
 {
     public class SpotifyAudioAnalysis : SpotifyObject
     {

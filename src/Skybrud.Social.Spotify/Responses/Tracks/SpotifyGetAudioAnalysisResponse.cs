@@ -1,5 +1,5 @@
 ﻿using Skybrud.Social.Http;
-using Skybrud.Social.Spotify.Models.Track;
+using Skybrud.Social.Spotify.Models.Tracks;
 
 namespace Skybrud.Social.Spotify.Responses.Tracks
 {

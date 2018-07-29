@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Social.Spotify.Models.Artists;
 using Skybrud.Social.Spotify.Models.Common;
-using Skybrud.Social.Spotify.Models.Track;
+using Skybrud.Social.Spotify.Models.Tracks;
 
 namespace Skybrud.Social.Spotify.Models.Player
 {
