@@ -4,7 +4,7 @@ using Skybrud.Essentials.Json.Extensions;
 namespace Skybrud.Social.Spotify.Models.Common {
     
     /// <summary>
-    /// Class representing an image of a Sptofy object (eg. an artist).
+    /// Class representing an image of a Spotify object (eg. an artist).
     /// </summary>
     /// <see>
     ///     <cref>https://developer.spotify.com/web-api/object-model/#image-object</cref>
