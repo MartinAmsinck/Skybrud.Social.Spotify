@@ -217,18 +217,24 @@ namespace Skybrud.Social.Spotify.OAuth {
 
         }
 
+        /// <summary>
+        /// Updates the request with information specific to the Spotify Web API.
+        /// </summary>
+        /// <param name="request">The request.</param>
+        protected override void PrepareHttpRequest(SocialHttpRequest request) {
+
+            base.PrepareHttpRequest(request);
+
+            // Append the scheme and host name if not already present
+            if (request.Url.StartsWith("/")) request.Url = "https://api.spotify.com" + request.Url;
+
+            // Append the access token (if specified)
+            if (!String.IsNullOrWhiteSpace(AccessToken)) request.Authorization = "Bearer " + AccessToken;
+
+        }
+
         #endregion
 
-        protected override void PrepareHttpRequest(SocialHttpRequest request)
-        {
-
-            // Append the access token to the query string if present in the client and not already
-            // specified in the query string
-            if (!request.QueryString.ContainsKey("access_token") && !String.IsNullOrWhiteSpace(AccessToken))
-            {
-                request.QueryString.Add("access_token", AccessToken);
-            }
-        }
     }
 
 }
